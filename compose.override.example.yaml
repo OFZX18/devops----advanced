@@ -1,0 +1,13 @@
+services:
+  app:
+    # Set the user and group when running containers from Linux (or Windows Subsystem for Linux)
+    user: "${UID:-1000}:${GID:-1000}"
+    environment:
+      # Change the composer cache directory when changing user and group on Linux
+      COMPOSER_HOME: /var/www/html/.composer
+      # Change the NPM cache directory when changing user and group on Linux
+      NPM_CONFIG_CACHE: /var/www/html/.npm
+      # Change debugger IDE key when using PHPStorm instead of VSCode
+      # DBGP_IDEKEY: PHPSTORM
+      # Set the servername for PHPStorm configuration
+      # PHP_IDE_CONFIG: serverName=devops-advanced

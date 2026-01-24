@@ -1,0 +1,43 @@
+services:
+
+  db:
+    image: mariadb:11.8
+    ports:
+      - "33067:3306"
+    environment:
+      MYSQL_DATABASE: laravel
+      MYSQL_USER: laravel
+      MYSQL_PASSWORD: laravel
+      MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: 1
+      TZ: "Europe/Amsterdam"
+    volumes:
+      - database:/var/lib/mysql
+
+  app:
+    build:
+      context: .
+      dockerfile: build/docker/php/Dockerfile
+      target: dev
+    depends_on:
+      - db
+    environment:
+      DBGP_IDEKEY: VSCODE
+      PHP_IDE_CONFIG: serverName=laravel-project
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    volumes:
+      - ./:/var/www/html:delegated
+
+  proxy:
+    build:
+      context: .
+      dockerfile: build/docker/nginx/Dockerfile
+    depends_on:
+      - app
+    ports:
+      - "8080:80"
+    volumes:
+      - ./public:/var/www/html/public:ro
+
+volumes:
+  database: {}
