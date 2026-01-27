@@ -11,6 +11,7 @@ RUN set -x \
 
 RUN set -x \
     && install-php-extensions \
+        intl \
         pdo_mysql \
         zip
 
