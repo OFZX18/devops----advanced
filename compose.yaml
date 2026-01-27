@@ -23,6 +23,7 @@ services:
     environment:
       DBGP_IDEKEY: VSCODE
       PHP_IDE_CONFIG: serverName=laravel-project
+      HOME: /tmp # To give artisan tinker a writable home directory
     extra_hosts:
       - host.docker.internal:host-gateway
     volumes:
