@@ -20,6 +20,8 @@ The first time you set up the application you have to run the following command 
 
 ```shell
 composer setup
+
+php artisan db:seed
 ```
 
 This command will perform the following tasks:
