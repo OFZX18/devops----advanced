@@ -20,8 +20,6 @@ The first time you set up the application you have to run the following command 
 
 ```shell
 composer setup
-
-php artisan db:seed
 ```
 
 This command will perform the following tasks:
@@ -34,6 +32,14 @@ This command will perform the following tasks:
 - Build assets
 
 If everything went fine you should now see a Laravel welcome page at http://localhost:8080
+
+## Seed database
+
+Fill the database by running the seeders.
+
+```shell
+php artisan db:seed
+```
 
 ## Stop the Docker containers
 
