@@ -19,6 +19,10 @@ class Album extends Model
         'release_date',
     ];
 
+    protected $casts = [
+        'release_date' => 'datetime',
+    ];
+
     /**
      * @return BelongsTo<Artist>
      */
