@@ -1,0 +1,16 @@
+# These settings are only needed when the Laravel application is located on a unix filesystem (or Windows Filesystem for Linux)
+#
+# This configuration file contains the following changes:
+#   1. Changes user and group within the container to the same user:group as the host machine.
+#   2. Changes the cache directory for composer
+#   3. Changes the cache directory for npm
+#
+# To enable these changes, uncomment all the lines below
+
+
+# services:
+#   app:
+#     user: "${UID:-1000}:${GID:-1000}"
+#     environment:
+#       COMPOSER_HOME: /var/www/html/.composer
+#       NPM_CONFIG_CACHE: /var/www/html/.npm

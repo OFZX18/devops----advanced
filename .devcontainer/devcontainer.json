@@ -2,6 +2,7 @@
   "name": "DevOps Advanced",
   "dockerComposeFile": [
     "../compose.yaml",
+    "../compose.override.yaml"
   ],
   "service": "app",
   "workspaceFolder": "/var/www/html",
