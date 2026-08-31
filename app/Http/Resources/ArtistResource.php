@@ -9,7 +9,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 class ArtistResource extends JsonResource
 {
     /** @var Artist */
-    public $request;
+    public $resource;
 
     /**
      * Transform the resource into an array.
