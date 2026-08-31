@@ -1,17 +1,17 @@
 services:
 
-  db:
-    image: mariadb:11.8
+  mysql:
+    image: mariadb:12.3
     ports:
-      - "33067:3306"
+      - "13341:3306"
     environment:
-      MYSQL_DATABASE: laravel
-      MYSQL_USER: laravel
-      MYSQL_PASSWORD: laravel
-      MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: 1
+      MARIADB_DATABASE: laravel
+      MARIADB_USER: laravel
+      MARIADB_PASSWORD: laravel
+      MARIADB_ROOT_PASSWORD: root123
       TZ: "Europe/Amsterdam"
     volumes:
-      - database:/var/lib/mysql
+      - db-data:/var/lib/mysql
 
   app:
     build:
@@ -19,26 +19,34 @@ services:
       dockerfile: build/docker/php/Dockerfile
       target: dev
     depends_on:
-      - db
+      - mysql
     environment:
-      DBGP_IDEKEY: VSCODE
-      PHP_IDE_CONFIG: serverName=laravel-project
       HOME: /tmp # To give artisan tinker a writable home directory
-    extra_hosts:
-      - host.docker.internal:host-gateway
     volumes:
       - ./:/var/www/html:delegated
 
-  proxy:
+  nginx:
     build:
       context: .
       dockerfile: build/docker/nginx/Dockerfile
     depends_on:
       - app
-    ports:
-      - "8080:80"
+    networks:
+        - default
+        - rocva-proxy
+    labels:
+        - "traefik.enable=true"
+        - "traefik.docker.network=rocva-proxy"
+        - "traefik.http.routers.devops-advanced.rule=Host(`devops-advanced.localhost`)"
+        - "traefik.http.routers.devops-advanced.entrypoints=web"
+        - "traefik.http.services.devops-advanced.loadbalancer.server.port=80"
     volumes:
       - ./public:/var/www/html/public:ro
 
+networks:
+    rocva-proxy:
+        external: true
+        name: rocva-proxy
+
 volumes:
-  database: {}
+    db-data: ~

@@ -1,18 +1,17 @@
 {
-  "name": "Docker Compose: DevOps Advanced",
+  "name": "DevOps Advanced",
   "dockerComposeFile": [
     "../compose.yaml",
-    "compose.yaml"
   ],
   "service": "app",
-  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "workspaceFolder": "/var/www/html",
+  "initializeCommand": "docker run --rm -v /var/run/docker.sock:/var/run/docker.sock ghcr.io/mbo-college-zuidoost/development-proxy:1.0",
   "customizations": {
     "vscode": {
       "settings": {
         "php.executablePath": "/usr/local/bin/php"
       },
       "extensions": [
-        "xdebug.php-debug",
         "bmewburn.vscode-intelephense-client"
       ]
     }

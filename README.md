@@ -1,4 +1,4 @@
-# Laravel Project
+# DevOps Advanced - Laravel
 
 ## Requirements
 
@@ -6,6 +6,10 @@
 2. You must have [Docker Desktop](https://www.docker.com/products/docker-desktop) installed.
 3. You must have [Visual Studio Code](https://code.visualstudio.com) installed
     1. You must have the [Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension installed.
+
+## Development Proxy
+
+This project uses the [ROC Zuidoost Development Proxy](https://github.com/MBO-College-Zuidoost/Development-Proxy).
 
 ## Start the Docker containers
 
@@ -31,7 +35,7 @@ This command will perform the following tasks:
 - Install Node packages
 - Build assets
 
-If everything went fine you should now see a Laravel welcome page at http://localhost:8080
+If everything went fine you should now see a Laravel welcome page at http://devops-advanced.localhost
 
 ## Seed database
 
@@ -51,7 +55,7 @@ php artisan db:seed
 From PHP you can connect to the database using the following details:
 
 ```php
-DB_HOST=db
+DB_HOST=mysql
 DB_PORT=3306
 DB_DATABASE=laravel
 DB_USERNAME=laravel
@@ -61,13 +65,20 @@ DB_PASSWORD=laravel
 Using MySQL Workbench using the following details:
 ```
 Host: localhost
-Port: 33067
+Port: 13341
 Username: laravel
 Password: laravel
 Default schema: laravel
 ```
 
-## Learing Laravel
+## Database root access
+
+```
+Username: root
+Password: root123
+```
+
+## Learning Laravel
 
 Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learing Center](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
 
