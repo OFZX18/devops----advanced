@@ -21,9 +21,11 @@ class ArtistResource extends JsonResource
         return [
             'id' => $this->resource->id,
             'name' => $this->resource->name,
+            'country' => $this->resource->country,
             'albums' => AlbumResource::collection(
                 $this->whenLoaded('albums')
             ),
+
         ];
     }
 }
