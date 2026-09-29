@@ -21,7 +21,7 @@ class AlbumResource extends JsonResource
         return [
             'id' => $this->resource->id,
             'title' => $this->resource->title,
-            'release_date' => $this->resource->release_date,
+            'release_date' => $this->resource->release_date->format('j F Y'),
             'artist' =>new ArtistResource(
                 $this->whenLoaded('artist'),
             ),
